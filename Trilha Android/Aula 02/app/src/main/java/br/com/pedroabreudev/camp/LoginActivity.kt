@@ -1,17 +1,21 @@
 package br.com.pedroabreudev.camp
 
+
 import android.content.ContentValues
 import android.content.ContentValues.TAG
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
 
 class LoginActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
+        Log.i(TAG, "onCreate: Login")
 
         val button = findViewById<Button>(R.id.button)
 
@@ -20,14 +24,16 @@ class LoginActivity : AppCompatActivity() {
                 startActivity(Intent(context, MainActivity::class.java))
             }
         }
-
-        Log.i(TAG, "onCreate: Login")
-
     }
 
     override fun onStart() {
         super.onStart()
         Log.i(ContentValues.TAG, "onStart: Login")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.i(TAG, "onResume: Login")
     }
 
     override fun onRestart() {
