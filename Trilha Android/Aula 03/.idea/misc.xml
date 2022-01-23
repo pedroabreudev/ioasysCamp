@@ -4,7 +4,8 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Learning/ioasysCamp/Trilha Android/Aula 03/app/src/main/res/layout/activity_login.xml" value="0.33425925925925926" />
-        <entry key="app/src/main/res/layout/activity_login.xml" value="0.14549180327868852" />
+        <entry key="app/src/main/res/drawable/bg_input.xml" value="0.35520833333333335" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.25" />
       </map>
     </option>
   </component>
