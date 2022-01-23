@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Books</string>
+    <string name="enter_btn">Entrar</string>
+    <string name="inputText_email">Email</string>
+    <string name="inputText_password">Senha</string>
+    <string name="loginTitle_books">Books</string>
+    <string name="wrong_email_password">Email e/ou senha incorretos.</string>
 </resources>
