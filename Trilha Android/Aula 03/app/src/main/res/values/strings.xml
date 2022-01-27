@@ -6,4 +6,6 @@
     <string name="loginTitle_books">Books</string>
     <string name="wrong_email_password">Email e/ou senha incorretos.</string>
     <string name="search">Pesquisar</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
