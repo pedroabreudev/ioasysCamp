@@ -32,5 +32,18 @@ data class Book(
                 name = "Web Design 161"
             )
         )
+
+        fun getMockListCount(count: Int): List<Book> {
+            val mockList = mutableListOf<Book>()
+            for (id in 1..count) {
+                mockList.add(
+                    Book(
+                        id = id,
+                        name = "Crossing the Chasm"
+                    )
+                )
+            }
+            return mockList
+        }
     }
 }

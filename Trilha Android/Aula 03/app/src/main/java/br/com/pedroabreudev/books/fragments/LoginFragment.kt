@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import br.com.pedroabreudev.books.R
+import androidx.navigation.fragment.findNavController
 import br.com.pedroabreudev.books.databinding.FragmentLoginBinding
 
 
@@ -21,4 +21,21 @@ class LoginFragment : Fragment() {
     ): View = FragmentLoginBinding.inflate(inflater, container, false).apply {
         _binding = this
     }.root
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setListener()
+    }
+
+    private fun setListener() {
+        binding.enterButton.setOnClickListener {
+            findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToBookListFragment())
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
 }
