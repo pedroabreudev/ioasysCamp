@@ -1,7 +1,8 @@
-package br.com.pedroabreudev.books
+package br.com.pedroabreudev.books.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import br.com.pedroabreudev.books.R
 
 class BookListActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

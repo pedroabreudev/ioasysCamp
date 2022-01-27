@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Books">
         <activity
-            android:name=".LoginActivity"
+            android:name=".activity.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,7 +18,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".BookListActivity"
+            android:name=".activity.BookListActivity"
             android:exported="false" />
     </application>
 
