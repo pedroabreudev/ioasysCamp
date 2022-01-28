@@ -21,6 +21,23 @@
         <item name="android:layout_marginStart">16dp</item>
     </style>
 
+    <style name="Book_Label">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_marginBottom">4dp</item>
+        <item name="android:ellipsize">end</item>
+        <item name="maxLines">1</item>
+    </style>
+
+    <style name="Book_Info">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/description</item>
+        <item name="android:layout_marginBottom">4dp</item>
+        <item name="android:ellipsize">end</item>
+        <item name="maxLines">1</item>
+    </style>
+
     <style name="List_Empty">
         <item name="android:textSize">18sp</item>
         <item name="android:textColor">@color/title_50</item>
