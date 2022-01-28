@@ -4,13 +4,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
+import br.com.pedroabreudev.books.adapter.BookClickListener
 import br.com.pedroabreudev.books.adapter.BookListAdapter
 import br.com.pedroabreudev.books.databinding.FragmentBookListBinding
 import br.com.pedroabreudev.books.model.Book
 
-class BookListFragment : Fragment() {
+class BookListFragment : Fragment(), BookClickListener {
 
     private val args: BookListFragmentArgs by navArgs()
     private lateinit var bookListAdapter: BookListAdapter
@@ -31,7 +33,7 @@ class BookListFragment : Fragment() {
     }
 
     private fun setBookListData() {
-        bookListAdapter = BookListAdapter()
+        bookListAdapter = BookListAdapter(this)
         binding.rvBooks.adapter = bookListAdapter
 
         bookListAdapter.submitList(
@@ -44,6 +46,10 @@ class BookListFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onBookClickListener(book: Book) {
+        Toast.makeText(requireContext(), book.id.toString(), Toast.LENGTH_SHORT).show()
     }
 
 }

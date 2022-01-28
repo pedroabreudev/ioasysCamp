@@ -29,7 +29,7 @@ class LoginFragment : Fragment() {
 
     private fun setListener() {
         binding.enterButton.setOnClickListener {
-            findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToBookListFragment())
+            findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToBookListFragment(15))
         }
     }
 
