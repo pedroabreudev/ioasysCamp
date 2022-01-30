@@ -21,7 +21,7 @@ class BookListFragment : Fragment(), BookClickListener {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View = FragmentBookListBinding.inflate(inflater, container, false).apply {
         _binding = this
     }.root
@@ -37,9 +37,7 @@ class BookListFragment : Fragment(), BookClickListener {
         binding.rvBooks.adapter = bookListAdapter
 
         bookListAdapter.submitList(
-            Book.getMockListCount(
-                args.itemCount
-            )
+            Book.getMockList()
         )
     }
 
@@ -49,7 +47,7 @@ class BookListFragment : Fragment(), BookClickListener {
     }
 
     override fun onBookClickListener(book: Book) {
-        Toast.makeText(requireContext(), book.id.toString(), Toast.LENGTH_SHORT).show()
+        BookDetailsBottomSheet.newInstance(book).show(childFragmentManager, "book")
     }
 
 }
