@@ -7,7 +7,10 @@
     android:layout_marginHorizontal="16dp"
     android:layout_marginVertical="4dp"
     android:background="@android:color/white"
+    android:clickable="true"
     android:elevation="20dp"
+    android:focusable="true"
+    android:longClickable="false"
     app:cardCornerRadius="4dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout

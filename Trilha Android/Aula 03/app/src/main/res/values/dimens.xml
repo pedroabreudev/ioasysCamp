@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="textSize_textError">14sp</dimen>
+    <dimen name="btn_close_width_height">40dp</dimen>
+    <dimen name="guideline_end">24dp</dimen>
+    <dimen name="guideline_start">24dp</dimen>
 </resources>
