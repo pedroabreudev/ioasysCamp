@@ -1,4 +1,4 @@
-package br.com.pedroabreudev.books.fragments
+package br.com.pedroabreudev.books.presentation.ui.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
