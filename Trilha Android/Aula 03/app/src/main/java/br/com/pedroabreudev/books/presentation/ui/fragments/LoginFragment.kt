@@ -5,8 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import br.com.pedroabreudev.books.databinding.FragmentLoginBinding
+import br.com.pedroabreudev.books.presentation.viewmodel.LoginViewModel
+import br.com.pedroabreudev.books.util.ViewState
 
 
 class LoginFragment : Fragment() {
@@ -14,10 +17,12 @@ class LoginFragment : Fragment() {
     private var _binding: FragmentLoginBinding? = null
     private val binding: FragmentLoginBinding get() = _binding!!
 
+    private val viewModel: LoginViewModel by viewModels()
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View = FragmentLoginBinding.inflate(inflater, container, false).apply {
         _binding = this
     }.root
@@ -25,11 +30,32 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setListener()
+        addObserver()
     }
 
     private fun setListener() {
         binding.enterButton.setOnClickListener {
-            findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToBookListFragment(15))
+            binding.run {
+                viewModel.login(
+                    textFieldEditEmail.text.toString(),
+                    textFieldEditPassword.text.toString()
+                )
+            }
+        }
+    }
+
+    private fun addObserver() {
+        viewModel.loggedUserViewState.observe(viewLifecycleOwner) { state ->
+            when (state) {
+                is ViewState.Success -> {
+                    findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToBookListFragment(
+                        15))
+                }
+                is ViewState.Error -> {
+                    binding.textError.visibility = View.VISIBLE
+
+                }
+            }
         }
     }
 
