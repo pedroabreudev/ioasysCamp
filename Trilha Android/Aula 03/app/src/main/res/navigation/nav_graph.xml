@@ -18,10 +18,5 @@
         android:id="@+id/bookListFragment"
         android:name="br.com.pedroabreudev.books.presentation.ui.fragments.BookListFragment"
         android:label="fragment_book_list"
-        tools:layout="@layout/fragment_book_list" >
-        <argument
-            android:name="itemCount"
-            android:defaultValue="1"
-            app:argType="integer" />
-    </fragment>
+        tools:layout="@layout/fragment_book_list" />
 </navigation>
