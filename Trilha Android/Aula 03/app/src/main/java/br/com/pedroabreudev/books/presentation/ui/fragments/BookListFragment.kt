@@ -46,7 +46,7 @@ class BookListFragment : Fragment(), BookClickListener {
     private fun setBookListData() {
         bookListAdapter = BookListAdapter(this)
         binding.rvBooks.adapter = bookListAdapter
-        viewModel.search("")
+        viewModel.search()
     }
 
     private fun addObserver() {
@@ -54,7 +54,7 @@ class BookListFragment : Fragment(), BookClickListener {
 
             when (state) {
                 is ViewState.Success -> {
-                    binding.tvEmptyList.visibility = View.GONE
+                    showEmptyListError(false)
                     bookListAdapter.submitList(
                         state.data
                     )
@@ -63,7 +63,7 @@ class BookListFragment : Fragment(), BookClickListener {
                     when (state.throwable) {
                         is EmptyBookListException -> {
                             bookListAdapter.submitList(listOf())
-                            binding.tvEmptyList.visibility = View.VISIBLE
+                            showEmptyListError(true)
                         }
                         else -> Unit
                     }
@@ -72,6 +72,10 @@ class BookListFragment : Fragment(), BookClickListener {
             }
 
         }
+    }
+
+    private fun showEmptyListError(hasError: Boolean) {
+        binding.tvEmptyList.visibility = if (hasError) View.VISIBLE else View.GONE
     }
 
     override fun onBookClickListener(book: Book) {
