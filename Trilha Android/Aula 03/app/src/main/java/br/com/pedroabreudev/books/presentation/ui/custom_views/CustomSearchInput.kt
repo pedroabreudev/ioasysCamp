@@ -1,4 +1,4 @@
-package br.com.pedroabreudev.books.custom_views
+package br.com.pedroabreudev.books.presentation.ui.custom_views
 
 import android.content.Context
 import android.util.AttributeSet

@@ -20,4 +20,5 @@
     <string name="isbn_10">ISBN-10</string>
     <string name="isbn_13">ISBN-13</string>
     <string name="publishers_review">RESENHA DA EDITORA</string>
+    <string name="book_not_found">Não encontramos nenhum \nlivro com esses termos.</string>
 </resources>

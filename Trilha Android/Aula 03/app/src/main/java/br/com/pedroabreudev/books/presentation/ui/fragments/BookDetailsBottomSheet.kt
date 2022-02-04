@@ -1,4 +1,4 @@
-package br.com.pedroabreudev.books.fragments
+package br.com.pedroabreudev.books.presentation.ui.fragments
 
 import android.os.Bundle
 import android.text.SpannableString
@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import br.com.pedroabreudev.books.R
 import br.com.pedroabreudev.books.databinding.BottomSheetBookDetailsBinding
-import br.com.pedroabreudev.books.model.Book
+import br.com.pedroabreudev.books.domain.model.Book
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment

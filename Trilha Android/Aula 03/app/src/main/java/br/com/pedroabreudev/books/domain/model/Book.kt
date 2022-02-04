@@ -1,4 +1,4 @@
-package br.com.pedroabreudev.books.model
+package br.com.pedroabreudev.books.domain.model
 
 data class Book(
     val id: Int,
