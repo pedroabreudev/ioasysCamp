@@ -11,7 +11,6 @@ class LoginDataSourceImpl : LoginDataSource {
 
     override fun login(email: String, password: String): Flow<User> = flow {
         delay(3_000)
-//        throw Exception("Algo deu errado!")
         emit(
             User(
                 name = "Pedro",

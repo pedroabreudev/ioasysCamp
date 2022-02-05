@@ -5,42 +5,36 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import br.com.pedroabreudev.books.domain.exception.EmptyBookListException
 import br.com.pedroabreudev.books.domain.model.Book
+import br.com.pedroabreudev.books.domain.repositories.BookRepository
 import br.com.pedroabreudev.books.util.ViewState
 import br.com.pedroabreudev.books.util.postError
+import br.com.pedroabreudev.books.util.postLoading
 import br.com.pedroabreudev.books.util.postSuccess
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 
-class BookListViewModel : ViewModel() {
+class BookListViewModel(private val bookRepository: BookRepository) : ViewModel() {
 
     private val _bookListViewState = MutableLiveData<ViewState<List<Book>>>()
     val bookListViewState = _bookListViewState as LiveData<ViewState<List<Book>>>
 
-    private val bookDataList: List<Book> by lazy { Book.getMockList() }
-
-    private fun getBook(input: String): List<Book> {
-        return if (input.trim().isEmpty()) {
-            bookDataList
-        } else {
-            bookDataList.filter { book ->
-                book.name.trim().contains(input, ignoreCase = true)
-            }
-        }
-    }
-
     fun search(input: String = "") {
         viewModelScope.launch {
-            getBook(input).let { books ->
-                when {
-                    books.isNotEmpty() -> {
-                        _bookListViewState.postSuccess(books)
-                    }
-                    else -> {
-                        _bookListViewState.postError(EmptyBookListException())
+            _bookListViewState.postLoading()
+
+            try {
+                bookRepository.getBooks("123", input).collect {
+                    if (it.isNotEmpty()) {
+                        _bookListViewState.postSuccess(it)
+                    } else {
+                        _bookListViewState.postError(Exception("Algo deu errado!"))
                     }
                 }
+
+            } catch (err: Exception) {
+                _bookListViewState.postError(err)
 
             }
         }
