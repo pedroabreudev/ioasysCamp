@@ -1,23 +1,22 @@
 package br.com.pedroabreudev.books.data_remote.datasource
 
 import br.com.pedroabreudev.books.data.datasources.LoginDataSource
+import br.com.pedroabreudev.books.data_remote.mappers.toDomain
+import br.com.pedroabreudev.books.data_remote.model.LoginRequest
+import br.com.pedroabreudev.books.data_remote.service.AuthService
 import br.com.pedroabreudev.books.domain.model.User
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import java.lang.Exception
 
-class LoginDataSourceImpl : LoginDataSource {
+class LoginDataSourceImpl(private val authService: AuthService) : LoginDataSource {
 
     override fun login(email: String, password: String): Flow<User> = flow {
-        delay(3_000)
-        emit(
-            User(
-                name = "Pedro",
-                birthdate = "14/10/1994",
-                gender = "Male",
-                accessToken = "123456"
-            )
-        )
+        val response = authService.signIn(LoginRequest(email, password))
+        val accessToken = response.headers()["authorization"]
+        if (response.isSuccessful) {
+            response.body()?.let { loginResponse ->
+                emit(loginResponse.toDomain(accessToken ?: ""))
+            }
+        }
     }
 }
