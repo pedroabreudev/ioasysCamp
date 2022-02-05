@@ -5,11 +5,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import br.com.pedroabreudev.books.domain.exception.LoginException
+import br.com.pedroabreudev.books.domain.repositories.LoginRepository
 import br.com.pedroabreudev.books.util.*
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import java.lang.Exception
 
-class LoginViewModel : ViewModel() {
+class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel() {
 
     private val _loggedUserViewState = MutableLiveData<ViewState<Boolean>>()
     val loggedUserViewState = _loggedUserViewState as LiveData<ViewState<Boolean>>
@@ -20,12 +23,18 @@ class LoginViewModel : ViewModel() {
 
             _loggedUserViewState.postLoading()
 
-            delay(2_000)
+            try {
+                loginRepository.login(email, password).collect {
+                    if (it.name.isNotEmpty()) {
+                        _loggedUserViewState.postSuccess(true)
+                    } else {
+                        _loggedUserViewState.postError(Exception("Body do usuário vazio"))
+                    }
+                }
 
-            if (email.isNotEmpty() && password.isNotEmpty()) {
-                _loggedUserViewState.postSuccess(true)
-            } else {
-                _loggedUserViewState.postError(LoginException())
+            } catch (err: Exception) {
+                _loggedUserViewState.postError(err)
+
             }
         }
     }
