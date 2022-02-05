@@ -5,11 +5,13 @@ import br.com.pedroabreudev.books.domain.model.User
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import java.lang.Exception
 
 class LoginDataSourceImpl : LoginDataSource {
 
     override fun login(email: String, password: String): Flow<User> = flow {
         delay(3_000)
+//        throw Exception("Algo deu errado!")
         emit(
             User(
                 name = "Pedro",
