@@ -5,11 +5,12 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import br.com.pedroabreudev.books.domain.exception.LoginException
+import br.com.pedroabreudev.books.domain.repositories.LoginRepository
 import br.com.pedroabreudev.books.util.*
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-class LoginViewModel : ViewModel() {
+class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel() {
 
     private val _loggedUserViewState = MutableLiveData<ViewState<Boolean>>()
     val loggedUserViewState = _loggedUserViewState as LiveData<ViewState<Boolean>>
