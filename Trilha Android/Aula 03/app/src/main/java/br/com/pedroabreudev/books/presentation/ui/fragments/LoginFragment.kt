@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import br.com.pedroabreudev.books.databinding.FragmentLoginBinding
 import br.com.pedroabreudev.books.presentation.viewmodel.LoginViewModel
 import br.com.pedroabreudev.books.util.ViewState
+import org.koin.androidx.viewmodel.ext.android.getViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
@@ -18,7 +19,9 @@ class LoginFragment : Fragment() {
     private var _binding: FragmentLoginBinding? = null
     private val binding: FragmentLoginBinding get() = _binding!!
 
-    private val loginViewModel: LoginViewModel by viewModel()
+    private val loginViewModel: LoginViewModel by lazy {
+        getViewModel()
+    }
 
 
     override fun onCreateView(
@@ -56,7 +59,7 @@ class LoginFragment : Fragment() {
             when (state) {
                 is ViewState.Success -> {
                     findNavController().navigate(
-                        LoginFragmentDirections.actionLoginFragmentToBookListFragment()
+                        LoginFragmentDirections.actionLoginFragmentToBookListFragment(accessToken = state.data)
                     )
                 }
                 is ViewState.Error -> {

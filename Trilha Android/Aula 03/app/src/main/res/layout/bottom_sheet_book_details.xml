@@ -33,7 +33,7 @@
                 android:id="@+id/imgBigBook"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:src="@drawable/img_bigbook" />
+                tools:src="@drawable/img_bigbook" />
 
         </com.google.android.material.card.MaterialCardView>
 

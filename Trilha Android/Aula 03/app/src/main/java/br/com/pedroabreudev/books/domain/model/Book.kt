@@ -1,7 +1,7 @@
 package br.com.pedroabreudev.books.domain.model
 
 data class Book(
-    val id: Int,
+    val id: String,
     val name: String,
     val author: String = "Tim Brown",
     val pages: String = "150 Páginas",
@@ -17,44 +17,5 @@ data class Book(
             " a leading design firm, and its celebrated CEO, Tim Brown," +
             " who uses this book to show how the techniques and" +
             " strategies of design belong at every level.",
-
-    ) {
-
-    companion object {
-        fun getMockList() = listOf(
-            Book(
-                id = 1,
-                name = "Crossing the Chasis"
-            ),
-            Book(
-                id = 2,
-                name = "Change By Design"
-            ),
-            Book(
-                id = 3,
-                name = "The Making of a Manager"
-            ),
-            Book(
-                id = 4,
-                name = "Don´t Make me Think"
-            ),
-            Book(
-                id = 5,
-                name = "Web Design 161"
-            )
-        )
-
-        fun getMockListCount(count: Int): List<Book> {
-            val mockList = mutableListOf<Book>()
-            for (id in 1..count) {
-                mockList.add(
-                    Book(
-                        id = id,
-                        name = "Crossing the Chasm"
-                    )
-                )
-            }
-            return mockList
-        }
-    }
-}
+    val imageUrl: String = ""
+)
