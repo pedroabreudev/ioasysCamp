@@ -5,8 +5,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import br.com.pedroabreudev.books.R
 import br.com.pedroabreudev.books.databinding.BookItemBinding
 import br.com.pedroabreudev.books.domain.model.Book
+import coil.load
 
 class BookListAdapter(
     private val onBookClickListener: BookClickListener
@@ -41,6 +43,9 @@ class BookListAdapter(
                 tvBookPages.text = book.pages
                 tvBookEditor.text = book.editor
                 tvBookDate.text = book.date
+                imgBook.load(book.imageUrl) {
+                    error(R.drawable.img_book)
+                }
 
                 root.setOnClickListener {
                     onBookClickListener.onBookClickListener(book)
