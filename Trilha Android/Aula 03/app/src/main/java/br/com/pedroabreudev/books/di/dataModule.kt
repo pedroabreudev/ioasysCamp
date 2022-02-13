@@ -9,5 +9,5 @@ import org.koin.dsl.module
 val dataModule = module {
 
     single<BookRepository> { BookRepositoryImpl(get()) }
-    single<LoginRepository> { LoginRepositoryImpl(get()) }
+    single<LoginRepository> { LoginRepositoryImpl(get(), get()) }
 }
