@@ -1,9 +1,9 @@
 package br.com.pedroabreudev.books.di
 
-import br.com.pedroabreudev.books.data.datasources.BookDataSource
-import br.com.pedroabreudev.books.data.datasources.LoginDataSource
-import br.com.pedroabreudev.books.data_remote.datasource.BookDataSourceImpl
-import br.com.pedroabreudev.books.data_remote.datasource.LoginDataSourceImpl
+import br.com.pedroabreudev.books.data.datasources.remote.BooksRemoteDataSource
+import br.com.pedroabreudev.books.data.datasources.remote.LoginRemoteDataSource
+import br.com.pedroabreudev.books.data_remote.datasource.BooksRemoteDataSourceImpl
+import br.com.pedroabreudev.books.data_remote.datasource.LoginRemoteDataSourceImpl
 import br.com.pedroabreudev.books.data_remote.service.AuthService
 import br.com.pedroabreudev.books.data_remote.service.BookService
 import br.com.pedroabreudev.books.data_remote.utils.ApiConstants
@@ -28,8 +28,8 @@ val dataRemoteModule = module {
 
     single { WebServiceFactory.providerOkHttpClient() }
 
-    single<BookDataSource> { BookDataSourceImpl(get()) }
+    single<BooksRemoteDataSource> { BooksRemoteDataSourceImpl(get()) }
 
-    single<LoginDataSource> { LoginDataSourceImpl(get()) }
+    single<LoginRemoteDataSource> { LoginRemoteDataSourceImpl(get()) }
 
 }
