@@ -7,6 +7,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import br.com.pedroabreudev.books.domain.model.Book
 import br.com.pedroabreudev.books.domain.repositories.BooksRepository
+import br.com.pedroabreudev.books.domain.usecase.GetBookListUseCase
+import br.com.pedroabreudev.books.domain.usecase.SaveBookListUseCase
 import br.com.pedroabreudev.books.util.ViewState
 import br.com.pedroabreudev.books.util.postError
 import br.com.pedroabreudev.books.util.postLoading
@@ -17,7 +19,10 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 
-class BookListViewModel(private val booksRepository: BooksRepository) : ViewModel() {
+class BookListViewModel(
+    private val getBookListUseCase: GetBookListUseCase,
+    private val saveBookListUseCase: SaveBookListUseCase,
+) : ViewModel() {
 
     private val _bookListViewState = MutableLiveData<ViewState<List<Book>>>()
     val bookListViewState = _bookListViewState as LiveData<ViewState<List<Book>>>
@@ -28,16 +33,11 @@ class BookListViewModel(private val booksRepository: BooksRepository) : ViewMode
 
             try {
                 withContext(Dispatchers.IO) {
-                    booksRepository.getBooks(input).collect {
-                        withContext(Dispatchers.Main) {
-                            if (it.isNotEmpty()) {
-                                saveBooks(bookList = it)
-                                _bookListViewState.postSuccess(it)
-                            } else {
-                                _bookListViewState.postError(Exception("Algo deu errado!"))
-                            }
-                        }
+                    getBookListUseCase(params = GetBookListUseCase.Params(input = input)).collect {
+                        saveBooks(bookList = it)
+                        _bookListViewState.postSuccess(it)
                     }
+
                 }
             } catch (err: Exception) {
                 withContext(Dispatchers.Main) {
@@ -51,7 +51,7 @@ class BookListViewModel(private val booksRepository: BooksRepository) : ViewMode
         viewModelScope.launch {
             try {
                 withContext(Dispatchers.IO) {
-                    booksRepository.saveBooks(bookList = bookList)
+                    saveBookListUseCase(params = SaveBookListUseCase.Params(bookList = bookList))
                 }
             } catch (err: Exception) {
                 return@launch
