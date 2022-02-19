@@ -4,10 +4,8 @@ import okhttp3.Dispatcher
 import okhttp3.OkHttpClient
 import okhttp3.ResponseBody
 import retrofit2.Converter
-import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-
 import retrofit2.create
 import java.lang.reflect.Type
 import java.util.concurrent.TimeUnit

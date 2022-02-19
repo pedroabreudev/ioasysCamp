@@ -2,7 +2,6 @@ package br.com.pedroabreudev.books.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import br.com.pedroabreudev.books.R
 import br.com.pedroabreudev.books.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {

@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.navArgs
 import br.com.pedroabreudev.books.databinding.FragmentBookListBinding
 import br.com.pedroabreudev.books.domain.exception.EmptyBookListException
 import br.com.pedroabreudev.books.domain.model.Book
