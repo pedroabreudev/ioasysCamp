@@ -11,7 +11,6 @@ import br.com.pedroabreudev.books.databinding.FragmentLoginBinding
 import br.com.pedroabreudev.books.presentation.viewmodel.LoginViewModel
 import br.com.pedroabreudev.books.util.ViewState
 import org.koin.androidx.viewmodel.ext.android.getViewModel
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class LoginFragment : Fragment() {
