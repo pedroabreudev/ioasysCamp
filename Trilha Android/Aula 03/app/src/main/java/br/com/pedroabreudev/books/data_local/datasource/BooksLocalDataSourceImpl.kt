@@ -29,7 +29,7 @@ class BooksLocalDataSourceImpl(
         val bookList = bookDao.getBooks().map { it.toDomain() }
         query?.let {
             emit(bookList.filter { book ->
-                book.name?.trim()?.contains(it, ignoreCase = true)
+                book.name.trim().contains(it, ignoreCase = true)
             })
         } ?: run {
             emit(bookList)
